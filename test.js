@@ -119,7 +119,7 @@ const testApiGetInfoSuccess = () => {
   .catch( error => console.log(error))
 }
 
-const testApiplusSuccess = () => {
+const testApiPlusSuccess = () => {
   let ts = moment().valueOf(new Date()) // get current milliseconds since the Unix Epoch
   let data = {
     from:'nguyễn văn a',
@@ -148,6 +148,35 @@ const testApiplusSuccess = () => {
   .catch( error => console.log(error))
 }
 
+const testApiMinusSuccess = () => {
+  let ts = moment().valueOf(new Date()) // get current milliseconds since the Unix Epoch
+  let data = {
+    from:'nguyễn văn a',
+    from_account: '231421321',
+    to_account: '07251743899648',
+    amount: 100000, // đơn vị VND
+    note: 'ghi chú',
+    ts: ts
+  }
+  let hashVal = hash(JSON.stringify(data))
+  let signVal = sign(JSON.stringify(data))
+  let requestBody = {
+      hash: hashVal,
+      signature: signVal,
+      data: data,
+      partnerCode: '0725'
+  }
+  const UrlApi = 'http://localhost:5500/openapi/minus'
+  return axios({
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    url: UrlApi,
+    data: requestBody
+  })
+  .then (respose => respose.data)
+  .catch( error => console.log(error))
+}
+
 
 
 const main = async () => {
@@ -164,7 +193,8 @@ const main = async () => {
   //   accountNum: '0725922171392',
   //   userName: 'hoangminhthanh2'
   // })
-  let ret = await testApiplusSuccess()
+  // let ret = await testApiPlusSuccess()
+  let ret = await testApiMinusSuccess()
   console.log(ret)
 } 
 
