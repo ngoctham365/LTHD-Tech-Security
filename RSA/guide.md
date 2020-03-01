@@ -120,7 +120,7 @@
         }
     }
     ```
-3. api dùng để  cộng tiền vào tài khoản có trong hệ thống.
+3. api dùng để  trừ tiền vào tài khoản có trong hệ thống.
     Url: `'host:port/openapi/minus'` method `POST`
 
     ```javascript

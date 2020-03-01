@@ -3,9 +3,9 @@ const your_sercret_key = 'your_sercret_key'
 const encoding = 'utf8'
 
 module.exports = {
-  hash: stringify => {
-    const hmac = crypto.createHmac('sha256', 'your_sercret_key')
-    hmac.update(stringify)
+  hash: stringifyData => {
+    const hmac = crypto.createHmac('sha256', your_sercret_key)
+    hmac.update(stringifyData)
     return hmac.digest('hex')
   },
   verifyHash: (hashVal, hashData) => {
