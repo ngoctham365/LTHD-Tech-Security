@@ -1,5 +1,5 @@
 # RSA
-Đối với RSA dùng `packet crypto` build in trong nodejs. Khuyến kích dùng luôn file `rsa.js` đã viết được đặt trong thư mục này. Hoặc có thể tham khảo để viết lại 2 hàm `sign` và `verify`.
+Đối với RSA dùng `packet crypto` build-in trong nodejs. Khuyến kích dùng luôn file `rsa.js` đã viết được đặt trong thư mục này. Hoặc có thể tham khảo để viết lại 2 hàm `sign` và `verify`.
 # API doccument
 1. api dùng để truy xuất thông tin của một account có trong hệ thống.
 
@@ -10,8 +10,8 @@
     const { hash } = require('./common') // xem hàm hash trong file `common.js`
     let ts = moment.valueOf() // get current milliseconds since the Unix Epoch
     let data = {
-        userName: 'thamttn3' ,
-        accountNum: 73983492348 ,
+        userName: 'thamttn3' , // chuỗi, userName muốn truy vấn thông tin
+        accountNum: 73983492348 , // số tài khoản muốn truy vấn thông tin
         ts: ts
     }
 
@@ -27,7 +27,9 @@
     ```javascript
     {
         errorCode: 1000, 
-        message: 'invalid partner code'
+        message: 'invalid partner code',
+        data: {
+        }
     }
     ```
 
@@ -37,7 +39,9 @@
     ```javascript
     {
         errorCode: 1001, 
-        message: 'invalid params'
+        message: 'invalid params',
+        data: {
+        }
     }
     ```
     
@@ -45,7 +49,9 @@
     ```javascript
     {
         errorCode: 1002,
-        message: 'request timeout'
+        message: 'request timeout',
+        data: {
+        }
     }
     ```
 
@@ -55,9 +61,10 @@
         errorCode: 0 , // 0 là không có lỗi
         message: 'successfully',
         data: {
-            accountNum: '12345678',// số tài khoản
-            name: 'Trần Thị Ngọc Thắm',
-            userName: 'Thamttn3'
+            name: 'Hoàng Minh Thanh',
+            accountNum: '0725922171392',
+            userName: 'hoangminhthanh2',
+            birthDay: '03/22/2002'
         }
     }
     ```
@@ -81,10 +88,12 @@
     const { sign } = require('./rsa.js') //
     let ts = moment.valueOf() // get current milliseconds since the Unix Epoch
     let data = {
-        accountNum: 73983492348,
-        amount: 100000, // đơn vị VND
-        note: 'ghi chú'
-        ts: ts
+        from:'nguyễn văn a', // tên người gửi, chuỗi
+        from_account: '231421321', // số tài khoản người gửi, chuỗi
+        to_account: '07251743899648', // số tài khoản người nhận, chuỗi
+        amount: 100000, // đơn vị VND, sô big interger
+        note: 'ghi chú', // ghi chú, chuỗi
+        ts: ts // timestamp lúc request gửi tiền tính bằng minisecond, interger 64 bit
     }
 
     let hashVal = hash(JSON.stringify(data))
@@ -105,6 +114,23 @@
         message: 'wrong signature'
     }
     ```
+     Nếu thiếu bất kì `fields` nào trong `data`  response về như sau:
+    ```javascript
+    {
+        errorCode: 1001, 
+        message: 'invalid params',
+        example: {
+            data: {
+                from:'nguyễn văn a', 
+                from_account: '231421321', 
+                to_account: '07251743899648',
+                amount: 100000, 
+                note: 'ghi chú',
+                ts: ts 
+            }
+        }
+    }
+    ```
     Nếu thành công sẽ trả lại như sau, nên lưu lại để đối soát.
     ```javascript
     {
@@ -115,7 +141,7 @@
         data: {
             tranId: 1831,
             accountNum: 73983492348,
-            amount: 100000, // đơn vị VND
+            amount: 100000,
             ts: ts
         }
     }
@@ -129,9 +155,11 @@
     const { sign } = require('./rsa.js') //
     let ts = moment.valueOf() // get current milliseconds since the Unix Epoch
     let data = {
-        accountNum: 73983492348,
-        amount: 100000, // đơn vị VND
-        note: 'ghi chú'
+        from:'nguyễn văn a',
+        from_account: '231421321',
+        to_account: '07251743899648',
+        amount: 100000 ,
+        note: 'ghi chú',
         ts: ts
     }
 
@@ -163,7 +191,7 @@
         data: {
             tranId: 1831,
             accountNum: 73983492348,
-            amount: 100000, // đơn vị VND
+            amount: 100000,
             ts: ts
         }
     }

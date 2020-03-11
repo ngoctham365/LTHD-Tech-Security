@@ -181,11 +181,13 @@ const testApiMinusSuccess = () => {
 
 const main = async () => {
   // let ret = await testApiGetInfoInvalidParnerCode()
+  
   // assert.deepEqual(ret, { msg: 'invalid partner code', errorCode: 1000 })
   // // console.log(ret)
   // ret = await testApiGetInfoTimeoutRequest()
   // assert.deepEqual(ret, { msg: 'request timeout', errorCode: 1001 })
-  // ret = await testApiGetInfoSuccess()
+  let ret = await testApiGetInfoSuccess()
+  console.log(ret)
   // assert.deepEqual(ret, {
   //   msg: 'successfully',
   //   errorCode: 0,
@@ -194,8 +196,8 @@ const main = async () => {
   //   userName: 'hoangminhthanh2'
   // })
   // let ret = await testApiPlusSuccess()
-  let ret = await testApiMinusSuccess()
-  console.log(ret)
+  // let ret = await testApiMinusSuccess()
+  // console.log(ret)
 } 
 
 main()
