@@ -1,6 +1,7 @@
 # RSA
 Đối với RSA dùng `packet crypto` build-in trong nodejs. Khuyến kích dùng luôn file `rsa.js` đã viết được đặt trong thư mục này. Hoặc có thể tham khảo để viết lại 2 hàm `sign` và `verify`.
-# API doccument
+## API doccument
+
 1. api dùng để truy xuất thông tin của một account có trong hệ thống.
 
     Url: `'host:port/openapi/info'` method `POST`. với `host:port` sẽ được config lúc demo. Xem ví dụ về body được gửi kèm api này:
@@ -23,9 +24,11 @@
         partnerCode: '0725'
     }
     ```
-## Chuỗi hash được thưc hiện bằng cách Json stringify toàn bộ data gửi đi sau đó hash chuỗi Json stringify này.
+
+    **Chuỗi hash được thưc hiện bằng cách Json stringify toàn bộ data gửi đi sau đó hash chuỗi Json stringify này.**
 
     Trong đó `partnerCode` = `0725` là mã code để có thể truy xuất api của nhóm. Néu sai partnerCode sẽ trả về:
+
     ```javascript
     {
         errorCode: 1000, 
@@ -109,7 +112,7 @@
     }
     ```
 
-## Chuỗi hash được thưc hiện bằng cách Json stringify toàn bộ data gửi đi sau đó hash chuỗi Json stringify này.
+    **Chuỗi hash được thưc hiện bằng cách Json stringify toàn bộ data gửi đi sau đó hash chuỗi Json stringify này.**
 
     Các lỗi `ts`, `hash`, `partnerCode` sẽ tương tự mã lỗi và message như api 1. Ngoài ra nếu sai `signature` sẽ respose lại như sau:
     ```javascript
