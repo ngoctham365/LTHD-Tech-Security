@@ -2,6 +2,8 @@
 Đối với RSA dùng `packet crypto` build-in trong nodejs. Khuyến kích dùng luôn file `rsa.js` đã viết được đặt trong thư mục này. Hoặc có thể tham khảo để viết lại 2 hàm `sign` và `verify`.
 ## API doccument
 
+## Thuật toán hash được dùng trong doccument là `sha512`
+
 1. api dùng để truy xuất thông tin của một account có trong hệ thống.
 
     Url: `'host:port/openapi/info'` method `POST`. với `host:port` sẽ được config lúc demo. Xem ví dụ về body được gửi kèm api này:
