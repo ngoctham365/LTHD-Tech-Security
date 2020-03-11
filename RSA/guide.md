@@ -23,7 +23,7 @@
         partnerCode: '0725'
     }
     ```
-## chuỗi hash được thưc hiện bằng cách Json stringify toàn bộ data gửi di sau đo hash chuỗi Json stringify này.
+## Chuỗi hash được thưc hiện bằng cách Json stringify toàn bộ data gửi đi sau đó hash chuỗi Json stringify này.
 
     Trong đó `partnerCode` = `0725` là mã code để có thể truy xuất api của nhóm. Néu sai partnerCode sẽ trả về:
     ```javascript
@@ -108,8 +108,8 @@
         partnerCode: '0725'
     }
     ```
-    
-## chuỗi hash được thưc hiện bằng cách Json stringify toàn bộ data gửi di sau đo hash chuỗi Json stringify này.
+
+## Chuỗi hash được thưc hiện bằng cách Json stringify toàn bộ data gửi đi sau đó hash chuỗi Json stringify này.
 
     Các lỗi `ts`, `hash`, `partnerCode` sẽ tương tự mã lỗi và message như api 1. Ngoài ra nếu sai `signature` sẽ respose lại như sau:
     ```javascript
